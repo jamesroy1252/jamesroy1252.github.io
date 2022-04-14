@@ -19,7 +19,7 @@ svg {
   border: 0;
 }
 body {
-  cursor: url("_cursor/cursor-normal.png"), auto;
+  cursor: url("cursor/cursor-normal.png"), auto;
   background: #a2d4ff;
   -webkit-font-smoothing: antialiased;
 }
