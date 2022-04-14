@@ -1,12 +1,12 @@
 let account;
-let mintIndexForSale = 0;
-let maxSaleAmount = 0;
+let mintIndexForSale = 1;
+let maxSaleAmount = 100;
 let mintPrice = 1;
-let mintStartBlockNumber = 0;
-let mintLimitPerBlock = 0;
-let mintLimitPerSale = 0;
+let mintStartBlockNumber = 1;
+let mintLimitPerBlock = 10;
+let mintLimitPerSale = 10;
 let round = 4;
-let blockNumber = 0;
+let blockNumber = 1;
 let blockCnt = false;
 let abi;
 let contractaddress = "0xb242540a855B51c61Bd5c5834d6114f2EB2123eF";
