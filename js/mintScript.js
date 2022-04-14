@@ -1,7 +1,7 @@
 let account;
 let mintIndexForSale = 0;
 let maxSaleAmount = 0;
-let mintPrice = 0;
+let mintPrice = 1;
 let mintStartBlockNumber = 0;
 let mintLimitPerBlock = 0;
 let mintLimitPerSale = 0;
@@ -9,12 +9,11 @@ let round = 4;
 let blockNumber = 0;
 let blockCnt = false;
 let abi;
-let contractaddress;
+let contractaddress = "0xb242540a855B51c61Bd5c5834d6114f2EB2123eF";
 let myContract;
 let balanceOfAccount;
 
 document.addEventListener("DOMContentLoaded", async function (event) {
-  await getContract();
   myContract = new caver.klay.Contract(abi, contractaddress);
   /*document.getElementById("address").innerHTML =
     "<p>Contract Address</p>\n" + `<p>${contractaddress}</p>`;
@@ -29,8 +28,7 @@ document.addEventListener("DOMContentLoaded", async function (event) {
   } catch (e) {
     if (String(e) == "ReferenceError: klaytn is not defined") {
       alert("KaiKas 확장 프로그램을 설치 해주세요!");
-      window.location =
-        "https://chrome.google.com/webstore/detail/kaikas/jblndlipeogpafnldhgmapagcccfchpi?hl=ko";
+      window.location = "https://chrome.google.com/webstore/detail/kaikas/jblndlipeogpafnldhgmapagcccfchpi?hl=ko";
     }
   }
 });
@@ -38,8 +36,7 @@ function cntBlockNumber() {
   if (!blockCnt) {
     setInterval(function () {
       blockNumber += 1;
-      document.getElementById("currentblock").innerHTML =
-        "<p>CURRENT BLOCK</p>\n" + `<p>#${blockNumber}</p>`;
+      document.getElementById("currentblock").innerHTML = "<p>CURRENT BLOCK</p>\n" + `<p>#${blockNumber}</p>`;
       check_status();
     }, 1000);
     blockCnt = true;
@@ -56,8 +53,7 @@ async function connect() {
   }
   account = accounts[0];
   caver.klay.getBalance(account).then(function (balance) {
-    document.getElementById("kaikasBtn").innerHTML =
-      "<p>" + String(account).slice(0, 15) + " …</p>";
+    document.getElementById("kaikasBtn").innerHTML = "<p>" + String(account).slice(0, 15) + " …</p>";
     document.getElementById("kaikasBtn").style.background = "#3e89c9";
   });
   await check_status();
@@ -87,103 +83,71 @@ async function check_status() {
       if (round == SPECIAL) {
         document.querySelector("progress").max = maxSaleAmount;
         document.querySelector("progress").value = mintIndexForSale;
-        document.getElementById("round").innerHTML =
-          "<p>Round</p>\n" + "<p>Special</p>";
-        document.getElementById("count").innerHTML = `남은 수량 :${
-          maxSaleAmount - (mintIndexForSale - 1)
-        }`;
+        document.getElementById("round").innerHTML = "<p>Round</p>\n" + "<p>Special</p>";
+        document.getElementById("count").innerHTML = `남은 수량 :${maxSaleAmount - (mintIndexForSale - 1)}`;
         await myContract.methods
           .isSpecialList(account)
           .call()
           .then((result2) => {
             document.getElementById("holdnfts").style.display = "none";
             document.getElementById("approval").style.display = "block";
-            document.querySelector("#approval p:first-child").innerHTML =
-              "Speical";
+            document.querySelector("#approval p:first-child").innerHTML = "Speical";
             if (result2 == true) {
-              document.querySelector("#approval p:last-child").style.color =
-                "#1cb80f";
-              document.querySelector("#approval p:last-child").innerHTML =
-                "✅ Approved";
+              document.querySelector("#approval p:last-child").style.color = "#1cb80f";
+              document.querySelector("#approval p:last-child").innerHTML = "✅ Approved";
             } else {
-              document.querySelector("#approval p:last-child").style.color =
-                "#94160d";
-              document.querySelector("#approval p:last-child").innerHTML =
-                "Not Approved";
+              document.querySelector("#approval p:last-child").style.color = "#94160d";
+              document.querySelector("#approval p:last-child").innerHTML = "Not Approved";
             }
           });
       } else if (round == WHITELIST) {
         document.querySelector("progress").max = maxSaleAmount - 20;
         document.querySelector("progress").value = mintIndexForSale - 20;
-        document.getElementById("round").innerHTML =
-          "<p>Round</p>\n" + "<p>Whitelist</p>";
-        document.getElementById("count").innerHTML = `남은 수량 :${
-          maxSaleAmount - (mintIndexForSale - 1)
-        }`;
+        document.getElementById("round").innerHTML = "<p>Round</p>\n" + "<p>Whitelist</p>";
+        document.getElementById("count").innerHTML = `남은 수량 :${maxSaleAmount - (mintIndexForSale - 1)}`;
         await myContract.methods
           .isWhiteList(account)
           .call()
           .then((result2) => {
             document.getElementById("holdnfts").style.display = "none";
             document.getElementById("approval").style.display = "block";
-            document.querySelector("#approval p:first-child").innerHTML =
-              "WhiteList";
+            document.querySelector("#approval p:first-child").innerHTML = "WhiteList";
             if (result2 == true) {
-              document.querySelector("#approval p:last-child").style.color =
-                "#1cb80f";
-              document.querySelector("#approval p:last-child").innerHTML =
-                "✅ Approved";
+              document.querySelector("#approval p:last-child").style.color = "#1cb80f";
+              document.querySelector("#approval p:last-child").innerHTML = "✅ Approved";
             } else {
-              document.querySelector("#approval p:last-child").style.color =
-                "#94160d";
-              document.querySelector("#approval p:last-child").innerHTML =
-                "Not Approved";
+              document.querySelector("#approval p:last-child").style.color = "#94160d";
+              document.querySelector("#approval p:last-child").innerHTML = "Not Approved";
             }
           });
       } else if (round == PUBLIC) {
         document.querySelector("progress").max = maxSaleAmount;
         document.querySelector("progress").value = mintIndexForSale;
-        document.getElementById("round").innerHTML =
-          "<p>Round</p>\n" + "<p>Public</p>";
-        document.getElementById("count").innerHTML = `남은 수량 :${
-          maxSaleAmount - (mintIndexForSale - 1)
-        }`;
+        document.getElementById("round").innerHTML = "<p>Round</p>\n" + "<p>Public</p>";
+        document.getElementById("count").innerHTML = `남은 수량 :${maxSaleAmount - (mintIndexForSale - 1)}`;
         document.getElementById("approval").style.display = "none";
         document.getElementById("holdnfts").style.display = "block";
-        document.querySelector("#holdnfts p:last-child").innerHTML =
-          String(balanceOfAccount);
+        document.querySelector("#holdnfts p:last-child").innerHTML = String(balanceOfAccount);
       } else {
         document.querySelector("progress").max = maxSaleAmount;
-        document.getElementById("round").innerHTML =
-          "<p>Round</p>\n" + "<p>None</p>";
-        document.getElementById("count").innerHTML = `남은 수량 :${
-          maxSaleAmount - (mintIndexForSale - 1)
-        }`;
+        document.getElementById("round").innerHTML = "<p>Round</p>\n" + "<p>None</p>";
+        document.getElementById("count").innerHTML = `남은 수량 :${maxSaleAmount - (mintIndexForSale - 1)}`;
         document.getElementById("approval").style.display = "none";
         document.getElementById("holdnfts").style.display = "block";
-        document.querySelector("#holdnfts p:last-child").innerHTML =
-          String(balanceOfAccount);
+        document.querySelector("#holdnfts p:last-child").innerHTML = String(balanceOfAccount);
       }
-      if (
-        document.querySelector("progress").value /
-          (document.querySelector("progress").max / 85) >
-        3
-      ) {
+      if (document.querySelector("progress").value / (document.querySelector("progress").max / 85) > 3) {
         document.getElementById("amount_sign").style.left =
-          document.querySelector("progress").value /
-            (document.querySelector("progress").max / 85) +
-          "%";
+          document.querySelector("progress").value / (document.querySelector("progress").max / 85) + "%";
       } else {
         document.getElementById("amount_sign").style.left = "3%";
       }
-      document.getElementById("pertransacion").innerHTML =
-        "<p>Per Transacion</p>\n" + `<p>${mintLimitPerBlock}</p>`;
+      document.getElementById("pertransacion").innerHTML = "<p>Per Transacion</p>\n" + `<p>${mintLimitPerBlock}</p>`;
       document.getElementById("mintingstartsat").innerHTML =
         "<p>MINTING STARTS AT</p>\n" + `<p>#${mintStartBlockNumber}</p>`;
       document.getElementById("price").innerHTML =
         "<p>Price</p>\n" + `<p>${caver.utils.fromPeb(mintPrice, "KLAY")}</p>`;
-      document.getElementById("perwallet").innerHTML =
-        "<p>Per Wallet</p>\n" + `<p>${mintLimitPerSale}</p>`;
+      document.getElementById("perwallet").innerHTML = "<p>Per Wallet</p>\n" + `<p>${mintLimitPerSale}</p>`;
     })
     .catch(function (error) {
       console.log(error);
@@ -231,10 +195,7 @@ async function allMint() {
   } else if (mintLimitPerSale < balanceOfAccount + parseInt(amount)) {
     alert("지갑당 보유량 초과!");
     return;
-  } else if (
-    maxSaleAmount + 1 <
-    parseInt(mintIndexForSale) + parseInt(amount)
-  ) {
+  } else if (maxSaleAmount + 1 < parseInt(mintIndexForSale) + parseInt(amount)) {
     alert("최대 물량을 넘어선 민팅입니다!");
     return;
   } else if (parseInt(amount) > mintLimitPerBlock) {
