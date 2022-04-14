@@ -29,7 +29,8 @@ function fadenone() {
   document.getElementById("bg").style.animation = "none";
 }
 function bgchange() {
-  document.getElementById("bg").src = "img/mint-background/" + (Math.floor(Math.random() * 24) + 1) + ".png";
+  document.getElementById("bg").src =
+    "https://klayweathergirls.com/_img/mint-background/" + (Math.floor(Math.random() * 24) + 1) + ".png";
   setTimeout(fadeio, 2500);
   setTimeout(bgchange, 3000);
   setTimeout(fadenone, 3500);
