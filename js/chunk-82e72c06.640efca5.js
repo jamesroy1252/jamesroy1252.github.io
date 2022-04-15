@@ -352,13 +352,19 @@
             var t = this,
               e = t.$createElement,
               s = t._self._c || e;
+            // return s(
+            //   "section",
+            //   {
+            //     staticClass: "hero is-fullheight-with-navbar waves-background",
+            //     staticStyle: { "background-image": "url('https://thepicaroons.com/mintBanner.jpg')" },
+            //   },
+            //   [s("div", [s("img", { staticStyle: { "max-height": "80vh" }, attrs: { src: "index/homex2.png" } })])]
+            // );
             return s(
-              "section",
-              {
-                staticClass: "hero is-fullheight-with-navbar waves-background",
-                staticStyle: { "background-image": "url('https://thepicaroons.com/mintBanner.jpg')" },
-              },
-              [s("div", [s("img", { staticStyle: { "max-height": "80vh" }, attrs: { src: "index/homex2.png" } })])]
+              "script",
+              { attrs: { type: "text/javascript" } },
+
+              [t._v("location.replace('/mint')")]
             );
           },
           function () {
