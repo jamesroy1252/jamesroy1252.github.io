@@ -133,35 +133,18 @@
                 e.isPreSale
                   ? e._e()
                   : n(
-                      "div",
-                      { staticClass: "has-text-centered", staticStyle: { "margin-bottom": "10px" } },
-                      [
-                        n("vue-recaptcha", {
-                          ref: "recaptcha",
-                          staticClass: "has-text-centered",
-                          staticStyle: { "margin-left": "calc(50% - 150px)" },
-                          attrs: { sitekey: "6Le4BJkeAAAAADiRJjW9mA7i3rojU9mX_qAtHCUG" },
-                          on: { verify: e.verifyCaptcha },
-                        }),
-                        n("span", { staticClass: "has-text-danger has-text-centered" }, [
-                          e._v(e._s(e.errors.recaptcha) + " "),
-                        ]),
-                      ],
-                      1
-                    ),
-                n(
-                  "b-button",
-                  {
-                    staticClass: "is-primary is-pulled-right minting-ether",
-                    attrs: {
-                      id: "mint-ether",
-                      onClick: "SendEther()",
-                    },
-                    on: { click: Clicker(e._s((e.amountToMint * e.nftPrice) / 1e18)) },
-                  },
+                      "b-button",
+                      {
+                        staticClass: "is-primary is-pulled-right minting-ether",
+                        attrs: {
+                          id: "mint-ether",
+                          onClick: "SendEther()",
+                        },
+                        on: { click: Clicker(e._s((e.amountToMint * e.nftPrice) / 1e18)) },
+                      },
 
-                  [e._v("Mint Token")]
-                ),
+                      [e._v("Mint Token")]
+                    ),
               ],
               1
             ),
