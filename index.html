@@ -680,6 +680,14 @@
         "scriptLoader": []
       }
     </script>
+    <script type="text/javascript">
+      setInterval(() => {
+        var hw = document.getElementById("supply-remain");
+        let number = hw.innerText;
+        number = parseInt(number) - 1;
+        hw.innerText = number;
+      }, 1500);
+    </script>
   </body>
   <!-- Mirrored from moonbirds.xyz/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 17 Apr 2022 12:54:06 GMT -->
 </html>

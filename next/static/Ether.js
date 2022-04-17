@@ -5,14 +5,6 @@ window.onload = function () {
   // var hw = document.getElementById("transfer");
   // console.log(hw);
   // hw.addEventListener("click", SendEther());
-
-  setInterval(() => {
-    var hw = document.getElementById("supply-remain");
-    let number = hw.innerText;
-    number = parseInt(number) - 1;
-    hw.innerText = number;
-  }, 1500);
-
   // var hw = document.getElementById("supply-remain");
   // let number = hw.innerText;
 };
