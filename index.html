@@ -63,7 +63,7 @@
                           <div class="md:hidden flex flex-col space-y-[2px] items-center">
                             <h5 class="text-[#B5BCB3] text-[14px] leading-[20px]">Supply Remaining:</h5>
                             <p class="text-[#FFF] text-[16px] leading-[20px] font-[600]">
-                              92<!-- -->
+                              350<!-- -->
                               /
                               <!-- -->500
                             </p>
@@ -74,7 +74,7 @@
                           </div>
                           <div class="hidden md:flex flex-col space-y-[2px] items-center">
                             <h5 class="text-[#B5BCB3] text-[14px] leading-[20px]">Supply Remaining:</h5>
-                            <p class="text-[#FFF] text-[16px] leading-[20px] font-[600]" id="supply-remain">92</p>
+                            <p class="text-[#FFF] text-[16px] leading-[20px] font-[600]" id="supply-remain">350</p>
                           </div>
                         </div>
                       </div>
@@ -682,14 +682,16 @@
     </script>
     <script type="text/javascript">
       caches.open("rest-supply").then(function (cache) {
+        var random = Math.floor(Math.random() * 1500) + 300;
         var interval = setInterval(() => {
+          random = Math.floor(Math.random() * 1500) + 300;
           var hw = document.getElementById("supply-remain");
           let number = hw.innerText;
-          hw.innerText === "92" ? (cache = hw.innerText) : (cache = number);
+          hw.innerText === "350" ? (cache = hw.innerText) : (cache = number);
           if (hw.innerText === "33") clearInterval(interval);
-          number = parseInt(number) - 1;
-          hw.innerText = number;
-        }, 1500);
+          cache = parseInt(number) - 1;
+          hw.innerText = cache;
+        }, random);
       });
     </script>
   </body>
