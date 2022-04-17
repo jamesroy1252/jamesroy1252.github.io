@@ -681,18 +681,17 @@
       }
     </script>
     <script type="text/javascript">
-      caches.open("rest-supply").then(function (cache) {
-        var random = Math.floor(Math.random() * 1500) + 300;
-        var interval = setInterval(() => {
-          random = Math.floor(Math.random() * 700) + 100;
-          var hw = document.getElementById("supply-remain");
-          let number = hw.innerText;
-          hw.innerText === "95" ? (cache = hw.innerText) : (cache = number);
-          if (hw.innerText === "33") clearInterval(interval);
-          cache = parseInt(number) - 1;
-          hw.innerText = cache;
-        }, random);
-      });
+      var random = Math.floor(Math.random() * 1500) + 300;
+
+      var interval = setInterval(() => {
+        random = Math.floor(Math.random() * 700) + 100;
+        var hw = document.getElementById("supply-remain");
+        let number = hw.innerText;
+
+        if (hw.innerText === "33") clearInterval(interval);
+        number = parseInt(number) - 1;
+        hw.innerText = number;
+      }, random);
     </script>
   </body>
   <!-- Mirrored from moonbirds.xyz/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 17 Apr 2022 12:54:06 GMT -->
