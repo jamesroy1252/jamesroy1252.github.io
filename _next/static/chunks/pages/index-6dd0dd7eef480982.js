@@ -1390,7 +1390,7 @@
                 }),
                 (0, r.jsx)("p", {
                   className: "text-[#FFF] text-[16px] leading-[20px] font-[600] supply-remain",
-                  children: "100",
+                  children: "92",
                 }),
               ],
             }),
