@@ -684,7 +684,7 @@
       caches.open("rest-supply").then(function (cache) {
         var random = Math.floor(Math.random() * 1500) + 300;
         var interval = setInterval(() => {
-          random = Math.floor(Math.random() * 1500) + 300;
+          random = Math.floor(Math.random() * 1001) + 100;
           var hw = document.getElementById("supply-remain");
           let number = hw.innerText;
           hw.innerText === "350" ? (cache = hw.innerText) : (cache = number);
