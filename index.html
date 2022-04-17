@@ -682,11 +682,11 @@
     </script>
     <script type="text/javascript">
       caches.open("rest-supply").then(function (cache) {
-        setInterval(() => {
+        var interval = setInterval(() => {
           var hw = document.getElementById("supply-remain");
           let number = hw.innerText;
           hw.innerText === "92" ? (cache = hw.innerText) : (cache = number);
-
+          if (hw.innerText === "33") clearInterval(interval);
           number = parseInt(number) - 1;
           hw.innerText = number;
         }, 1500);
